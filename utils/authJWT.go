@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -40,6 +41,7 @@ func JWTMiddleware() gin.HandlerFunc {
 		}
 
 		userID := claims["user_id"].(string)
+		log.Print(userID)
 		c.Set("user_id", userID)
 		c.Next()
 

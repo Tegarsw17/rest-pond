@@ -6,9 +6,9 @@ import (
 
 type Pond struct {
 	ID              string    `json:"id" gorm:"primaryKey"`
-	Name            string    `json:"name"`
-	Dimension       string    `json:"dimension"`
-	Condition       string    `json:"condition"`
+	Name            string    `json:"name" validate:"required"`
+	Dimension       string    `json:"dimension" validate:"required"`
+	Condition       string    `json:"condition" binding:"required"`
 	Maintenance     string    `json:"maintenance"`
 	DateMaintenance time.Time `json:"dateMaintenance"`
 	DateFeeding     time.Time `json:"dateFeeding"`
