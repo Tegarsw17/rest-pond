@@ -18,7 +18,7 @@ type Pond struct {
 	UpdatedAt       time.Time
 }
 
-type CreatePond struct {
+type ShowPond struct {
 	ID              string    `json:"id"`
 	Name            string    `json:"name"`
 	Dimension       string    `json:"dimension"`
@@ -27,4 +27,14 @@ type CreatePond struct {
 	DateMaintenance time.Time `json:"dateMaintenance"`
 	DateFeeding     time.Time `json:"dateFeeding"`
 	TotalFish       int       `json:"totalFish"`
+}
+type CreatePond struct {
+	ID              string `json:"id"`
+	Name            string `json:"name"`
+	Dimension       string `json:"dimension"`
+	Condition       string `json:"condition"`
+	Maintenance     string `json:"maintenance"`
+	DateMaintenance string `json:"dateMaintenance"`
+	DateFeeding     string `json:"dateFeeding"`
+	TotalFish       int    `json:"totalFish"`
 }

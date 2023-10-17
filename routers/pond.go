@@ -16,4 +16,7 @@ func PondRouter(r *gin.Engine, db *gorm.DB) {
 	// }
 	r.GET("/pond", utils.JWTMiddleware(), handler.GetAllPond)
 	r.POST("/pond", utils.JWTMiddleware(), handler.CreatePond)
+	r.GET("/pond/:id", utils.JWTMiddleware(), handler.GetDetailPond)
+	r.DELETE("/pond/:id", utils.JWTMiddleware(), handler.DeletePond)
+	r.PUT("/pond/:id", utils.JWTMiddleware(), handler.UpdatePond)
 }
