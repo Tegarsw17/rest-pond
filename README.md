@@ -2,9 +2,12 @@
 
 ## Introduction
 
-Welcome to the Pond Management API, a robust and efficient RESTful web service designed to simplify pond and fish population management. This API is built with Golang, GIN, and JWT for security, ensuring a seamless experience for developers and end-users.
+Welcome to the Pond Management API, a robust and efficient RESTful web service designed to simplify pond and fish population management. This API is built with Golang, GIN, and JWT for security, ensuring a seamless experience for developers and end-users. 
 
 ## Key Endpoints
+
+### Documentation
+We used Postman for the documentation you can see [here](https://documenter.getpostman.com/view/24837675/2s9YR9XXTj)
 
 ### User Authentication
 
