@@ -16,5 +16,6 @@ func main() {
 	}
 	routers.AuthRouter(r, db)
 	routers.PondRouter(r, db)
+	routers.FishRouter(r, db)
 	r.Run("localhost:8080")
 }

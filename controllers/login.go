@@ -19,10 +19,7 @@ func (h *Handler) LoginTask(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
 			"message": err,
 		})
-		// c.Abort()
 	}
-
-	// tokenHeader := c.GetHeader("authorization")
 
 	if !h.isUsernameAvailabel(credential.Username) {
 		c.JSON(http.StatusBadRequest, utils.ResponsJson{

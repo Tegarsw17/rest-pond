@@ -22,7 +22,26 @@ var uni = ut.New(english, english)
 func (h *Handler) GetAllPond(c *gin.Context) {
 
 	var ponds []models.Pond
-	h.DB.Find(&ponds, "id_user = ?", "9daaacda-0f24-4f67-aba3-e779a2ddcc82")
+
+	// h.DB.Find(&ponds, "id_user = ?", "9daaacda-0f24-4f67-aba3-e779a2ddcc82")
+
+	userID, exists := c.Get("user_id")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "User ID not found in context"})
+		return
+	}
+	str := fmt.Sprintf("%v", userID)
+
+	h.DB.Find(&ponds, "id_user = ?", str)
+
+	if len(ponds) == 0 {
+		c.JSON(http.StatusNotFound, utils.ResponsJsonStruct{
+			Error:   true,
+			Message: "Data not found",
+			Data:    ponds,
+		})
+		return
+	}
 
 	var pondResponses []models.ShowPond
 
@@ -160,7 +179,6 @@ func (h *Handler) UpdatePond(c *gin.Context) {
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
 			"message": err,
-			"p":       "1",
 		})
 		return
 	}

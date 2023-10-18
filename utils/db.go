@@ -34,6 +34,7 @@ func SetupDB() (*gorm.DB, error) {
 func Migrate(db *gorm.DB) {
 	db.AutoMigrate(&models.Users{})
 	db.AutoMigrate(&models.Pond{})
+	db.AutoMigrate(&models.Fish{})
 
 	dataUser := models.Users{}
 	if db.Find(&dataUser).RecordNotFound() {
@@ -42,6 +43,10 @@ func Migrate(db *gorm.DB) {
 	dataPond := models.Pond{}
 	if db.Find(&dataPond).RecordNotFound() {
 		seederPond(db)
+	}
+	dataFish := models.Fish{}
+	if db.Find(&dataFish).RecordNotFound() {
+		seederFish(db)
 	}
 }
 
@@ -59,6 +64,49 @@ func seederAuth(db *gorm.DB) {
 			Username: "satriya",
 			Password: "827ccb0eea8a706c4c34a16891f84e7b",
 			Email:    "satriya@mail.com",
+		},
+	}
+
+	for _, v := range data {
+		db.Create(&v)
+	}
+}
+
+func seederFish(db *gorm.DB) {
+	// 827ccb0eea8a706c4c34a16891f84e7b -> 12345
+	date := "2022-09-09"
+	parsedTimeM, err := ParseDateInput(date)
+	if err != nil {
+		fmt.Println("Error parsing date:", err)
+		return
+	}
+	data := []models.Fish{
+		{
+			ID:              "1",
+			Type:            "kumpay",
+			Colour:          "red, white",
+			Size:            "12",
+			Maintenance:     "-",
+			DateMaintenance: parsedTimeM,
+			IdPond:          "a84e4c2a-8529-48e2-a530-6b395c2e45db",
+		},
+		{
+			ID:              "2",
+			Type:            "Shushui",
+			Colour:          "Brown",
+			Size:            "15",
+			Maintenance:     "luka luar",
+			DateMaintenance: parsedTimeM,
+			IdPond:          "471ceac2-36dc-4dbc-ad8b-4422f3768250",
+		},
+		{
+			ID:              "3",
+			Type:            "ogon",
+			Colour:          "Black",
+			Size:            "13",
+			Maintenance:     "jamur",
+			DateMaintenance: parsedTimeM,
+			IdPond:          "a84e4c2a-8529-48e2-a530-6b395c2e45db",
 		},
 	}
 
